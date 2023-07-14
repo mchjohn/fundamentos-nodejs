@@ -1,0 +1,14 @@
+{
+  "name": "fundamentos-nodejs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd src && node --watch read.js",
+    "devstd": "cd streams && node  write.js"
+  },
+  "keywords": [],
+  "author": "Michel John",
+  "license": "ISC"
+}
