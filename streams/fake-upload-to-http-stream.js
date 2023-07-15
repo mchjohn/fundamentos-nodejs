@@ -1,5 +1,3 @@
-process.stdin.pipe(process.stdout)
-
 import { Readable } from 'node:stream'
 
 class OneToHundredStream extends Readable {
@@ -9,15 +7,22 @@ class OneToHundredStream extends Readable {
     const i = this.index++
 
     setTimeout(() => {
-      if (i > 100) {
+      if (i > 5) {
         this.push(null)
       } else {
         const buf = Buffer.from(String(i))
 
         this.push(buf)
       }
-    }, 1000)
+    }, 1000);
   }
 }
 
-new OneToHundredStream().pipe(process.stdout)
+fetch('http://localhost:3002', {
+  method: 'POST',
+  body: new OneToHundredStream(),
+}).then(res => {
+  return res.text()
+}).then(data => {
+  console.log(data)
+})
